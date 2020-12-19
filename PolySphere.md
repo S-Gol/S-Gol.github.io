@@ -128,7 +128,38 @@ The truncation is performed in 3 steps.
 
 ![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
 
+Note that the vertices are not necessarily ordered this way - they can be any arbitrary value. Step 2 is the important part here, and the core of this technique. When we store edges/tris in the dictionary, they are hashed according to the two vertices that designate the ends. This hash needs to be created such that it can be inverted to get the other triangle that shares it. In my case, the hash is calculated as below. 
 
+```
+public static long dirSpecHashCode(int a, int b)
+{
+    int i0, i1;
+    long sign;
+    if (a < b)
+    {
+	i0 = a;
+	i1 = b;
+	sign = 1;
+    }
+    else
+    {
+	i1 = a;
+	i0 = b;
+	sign = -1;
+    }
+
+    long key = 23;
+    key = key * 314159 + (long)i0;
+    key = key * 314159 + (long)i1;
+    return key*sign;
+}
+```
+
+By negating the hash, we can get the hash of the opposing triangle. Because we know that triangles are always wound clockwise in Unity, we know that this will always work. 
+
+![Triangles](/Images/PolyGrid/Triangles.svg)
+
+Because of the winding, we can designate the triangle ABC as a collection of 3 edges, AB,BC,CA. Similarly, BDC is made up of BD,DC,CB. In the dictionary we created in step 2, we assigned the keys to be the edges and the values to be their parent triangles. In this case, the keys of hash(AB), hash(BC), hash(CA) will all return the value of the left triangle. Based on negative property of the hash, we can also reverse these hashes. For example, hash(BC) will return the *left* triangle, while hash(CB) will return the *right* triangle. 
 
 
 
