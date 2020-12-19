@@ -99,8 +99,11 @@ Note the changes to the key formula - the Unity implementation had a large numbe
 The subdivision in the code above shares points between triangles. While this does not allow for proper rendering as the vertices would share normals and UVs, this is vital for the truncation operation later. The code performs the operation shown in the image below.
 
 1. Get the original triangle
-+ Calculate midpoints, after checking if the adjacent triangle has already done this
-+ Discard the original triangle, create four new ones based on the midpoints. 
+2. Calculate midpoints, after checking if the adjacent triangle has already done this
+3. Discard the original triangle, create four new ones based on the midpoints. 
 
 ![Subdivision Example](/Images/PolyGrid/Subdivision.svg)
 
+After subdiving, we wind up with an icosphere. Again, Wikipedia provides a great example of what it should look like. 
+
+![Subdivision Example](/Images/PolyGrid/IcosphereWikipedia.PNG)
