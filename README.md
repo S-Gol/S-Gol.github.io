@@ -4,7 +4,7 @@ This website hosts a collection of my projects and articles on said projects. Th
 
 ### Articles
 
-Generation of polygonal grids on spherical surfaces
+[Generation of polygonal grids on spherical surfaces](PolySphere.md)
 
 ### About Me
 
