@@ -114,7 +114,7 @@ The subdivision in the code above shares points between triangles. While this do
 After subdiving, we wind up with an icosphere. Again, Wikipedia provides a great example of what it should look like. 
 
 <p align="center">
-<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/IcosphereWikipedia.svg" width="500">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/IcosphereWikipedia.png" width="500">
 </p>
 
 At this point, you might be thinking "But those are all pentagons! Where are the hexagons I was promised?" For geometrical reasons, the isocahedron is created of 12 pentagons. When we subidivide it, these pentagons are retained. We can convert the other triangles into hexagons, but these 12 pentagons will always exist - any size grid can be created, and these 12 will always be there, haunting you. If you have a problem with this, you can take it up with Euler or move to a hyperbolic world. 
