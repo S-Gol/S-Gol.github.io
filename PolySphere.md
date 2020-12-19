@@ -128,7 +128,13 @@ The truncation is performed in 3 steps.
 
 ![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
 
-Note that the vertices are not necessarily ordered this way - they can be any arbitrary value. Step 2 is the important part here, and the core of this technique. When we store edges/tris in the dictionary, they are hashed according to the two vertices that designate the ends. This hash needs to be created such that it can be inverted to get the other triangle that shares it. In my case, the hash is calculated as below. 
+#### Truncation step 1
+
+This step is easy enough - just take the centroid or average of all three points of a triangle, and store them to an array somewhere indexed by the triangle's index
+
+#### Truncation step 2
+
+Step 2 is the important part here, and the core of this technique. When we store edges/tris in the dictionary, they are hashed according to the two vertices that designate the ends. This hash needs to be created such that it can be inverted to get the other triangle that shares it. In my case, the hash is calculated as below. 
 
 ```
 public static long dirSpecHashCode(int a, int b)
@@ -159,7 +165,34 @@ By negating the hash, we can get the hash of the opposing triangle. Because we k
 
 ![Triangles](/Images/PolyGrid/Triangles.svg)
 
-Because of the winding, we can designate the triangle ABC as a collection of 3 edges, AB,BC,CA. Similarly, BDC is made up of BD,DC,CB. In the dictionary we created in step 2, we assigned the keys to be the edges and the values to be their parent triangles. In this case, the keys of hash(AB), hash(BC), hash(CA) will all return the value of the left triangle. Based on negative property of the hash, we can also reverse these hashes. For example, hash(BC) will return the *left* triangle, while hash(CB) will return the *right* triangle. 
+Because of the winding, we can designate the triangle ABC as a collection of 3 edges, AB,BC,CA. Similarly, BDC is made up of BD,DC,CB. In the dictionary we created in step 2, we assigned the keys to be the edges and the values to be their parent triangles. In this case, the keys of hash(AB), hash(BC), hash(CA) will all return the value of the left triangle. 
 
+Based on negative property of the hash, we can also reverse these hashes. For example, hash(BC) will return the *left* triangle, while hash(CB) will return the *right* triangle. 
 
+#### Truncation Step 3
+
+In step 3, these hashes are used to order the edges. Let's refer back to this image.
+
+![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
+
+In step 2, we have a polygon made up of points 0,1,2,3,4,5,6, with 6 being the center of the new hexagon. Step three follows the pseudocode below
+
+```
+Start: t = arbitrary connected triangle
+List<points> orderedPoints
+//Lets assume t = triangle 0,1,6 from the example
+for i in connected triangle count:
+	e = hash of the next CCW edge
+	orderedPoints.append(centroid of t) 
+	//In the 0,1,6, example, this would be the edge 6,1. 
+	e=-e
+	set t = dictionary value of e
+```
+This step can also be used to calculate the neighbors of each polygon by adding the vertice at the other end of the edge to a list. This is not needed for the pure grid generation, and is thus neglected.
+
+#### Completion
+
+After performing this truncation, we now have a set of polygons defined by a sorted list of their vertices. This list is sorted CW, and can be easily triangulated to an appropriate mesh format. 
+
+	
 
