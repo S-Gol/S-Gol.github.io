@@ -41,59 +41,60 @@ We can predict the number of vertices (which will turn into polygons later) from
 Based on our chosen number of subdivisions, we can then iterate through the list of triangles. This is performed using the same implementation as the Unity wiki.  
 
 ```// refine triangles
-			for (int i = 0; i < recursionLevel; i++)
-			{
-				List<TriangleIndices> faces2 = new List<TriangleIndices>();
-				foreach (var tri in faces)
-				{
-					// replace triangle by 4 triangles
-					int a = getMiddlePoint(tri.v1, tri.v2, ref vertList, ref middlePointIndexCache, radius);
-					int b = getMiddlePoint(tri.v2, tri.v3, ref vertList, ref middlePointIndexCache, radius);
-					int c = getMiddlePoint(tri.v3, tri.v1, ref vertList, ref middlePointIndexCache, radius);
- 
-					faces2.Add(new TriangleIndices(tri.v1, a, c));
-					faces2.Add(new TriangleIndices(tri.v2, b, a));
-					faces2.Add(new TriangleIndices(tri.v3, c, b));
-					faces2.Add(new TriangleIndices(a, b, c));
-				}
-				faces = faces2;
-			}
+for (int i = 0; i < recursionLevel; i++)
+{
+	List<TriangleIndices> faces2 = new List<TriangleIndices>();
+	foreach (var tri in faces)
+	{
+		// replace triangle by 4 triangles
+		int a = getMiddlePoint(tri.v1, tri.v2, ref vertList, ref middlePointIndexCache, radius);
+		int b = getMiddlePoint(tri.v2, tri.v3, ref vertList, ref middlePointIndexCache, radius);
+		int c = getMiddlePoint(tri.v3, tri.v1, ref vertList, ref middlePointIndexCache, radius);
+
+		faces2.Add(new TriangleIndices(tri.v1, a, c));
+		faces2.Add(new TriangleIndices(tri.v2, b, a));
+		faces2.Add(new TriangleIndices(tri.v3, c, b));
+		faces2.Add(new TriangleIndices(a, b, c));
+	}
+	faces = faces2;
+}
 ```
 ```
 private static int getMiddlePoint(int p1, int p2, ref List<Vector3> vertices, ref Dictionary<long, int> cache, float radius)
+{
+	// first check if we have it already
+	bool firstIsSmaller = p1 < p2;
+	long smallerIndex = firstIsSmaller ? p1 : p2;
+	long greaterIndex = firstIsSmaller ? p2 : p1;
+	long key = ((smallerIndex & 0xFFFF0000) << 48) + ((greaterIndex & 0xFFFF0000) << 32) + ((smallerIndex & 0x0000FFFF) << 16) + (greaterIndex & 0x0000FFFF);
+
+	int ret;
+	if (cache.TryGetValue(key, out ret))
 	{
-		// first check if we have it already
-    bool firstIsSmaller = p1 < p2;
-    long smallerIndex = firstIsSmaller ? p1 : p2;
-    long greaterIndex = firstIsSmaller ? p2 : p1;
-    long key = ((smallerIndex & 0xFFFF0000) << 48) + ((greaterIndex & 0xFFFF0000) << 32) + ((smallerIndex & 0x0000FFFF) << 16) + (greaterIndex & 0x0000FFFF);
- 
-		int ret;
-		if (cache.TryGetValue(key, out ret))
-		{
-			return ret;
-		}
- 
-		// not in cache, calculate it
-		Vector3 point1 = vertices[p1];
-		Vector3 point2 = vertices[p2];
-		Vector3 middle = new Vector3
-		(
-			(point1.x + point2.x) / 2f,
-			(point1.y + point2.y) / 2f,
-			(point1.z + point2.z) / 2f
-		);
- 
-		// add vertex makes sure point is on unit sphere
-		int i = vertices.Count;
-		vertices.Add( middle.normalized * radius );
- 
-		// store it, return index
-		cache.Add(key, i);
- 
-		return i;
+		return ret;
+	}
+
+	// not in cache, calculate it
+	Vector3 point1 = vertices[p1];
+	Vector3 point2 = vertices[p2];
+	Vector3 middle = new Vector3
+	(
+		(point1.x + point2.x) / 2f,
+		(point1.y + point2.y) / 2f,
+		(point1.z + point2.z) / 2f
+	);
+
+	// add vertex makes sure point is on unit sphere
+	int i = vertices.Count;
+	vertices.Add( middle.normalized * radius );
+
+	// store it, return index
+	cache.Add(key, i);
+
+	return i;
 	}
   ```
+  
 Note the changes to the key formula - the Unity implementation had a large number of hash collisions, slowing down the generation. Thanks to @Pulni on the GameDevLeague Discord for this solution. 
 
 The subdivision in the code above shares points between triangles. While this does not allow for proper rendering as the vertices would share normals and UVs, this is vital for the truncation operation later. The code performs the operation shown in the image below.
@@ -193,6 +194,3 @@ This step can also be used to calculate the neighbors of each polygon by adding 
 #### Completion
 
 After performing this truncation, we now have a set of polygons defined by a sorted list of their vertices. This list is sorted CW, and can be easily triangulated to an appropriate mesh format. 
-
-	
-
