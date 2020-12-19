@@ -110,4 +110,25 @@ After subdiving, we wind up with an icosphere. Again, Wikipedia provides a great
 
 At this point, you might be thinking "But those are all pentagons! Where are the hexagons I was promised?" For geometrical reasons, the isocahedron is created of 12 pentagons. When we subidivide it, these pentagons are retained. We can convert the other triangles into hexagons, but these 12 pentagons will always exist - any size grid can be created, and these 12 will always be there, haunting you. If you have a problem with this, you can take it up with Euler or move to a hyperbolic world. 
 
+#### Truncation
+
+After we have the icosphere, we need to perform a [truncation operation](https://en.wikipedia.org/wiki/Truncation_(geometry)) to create the polygonal faces. In general, truncation takes the vertices of a mesh and "crushes" them inwards. This has the effect shown in the image below. 
+
+![Truncation Example](/Images/PolyGrid/CubicTruncation.png)
+
+The ideal truncation for the hexagonal surface:
+
+![Truncation Hex Example](/Images/PolyGrid/HexTruncation.svg)
+
+The truncation is performed in 3 steps.
+
+1. Calculate the centroid of each triangle (1 Parallel instance per triangle) 
+2. Store all edges and triangle IDs to a dictionary (1 Parallel instance per triangle)
+3. Create new edges (not triangles yet) for each truncated face (1 Parallel instance per vertex)
+
+![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
+
+
+
+
 
