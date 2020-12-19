@@ -202,8 +202,9 @@ List<points> orderedPoints
 //Lets assume t = triangle 0,1,6 from the example
 for i in connected triangle count:
 	e = hash of the next CCW edge
-	orderedPoints.append(centroid of t) 
 	//In the 0,1,6, example, this would be the edge 6,1. 
+
+	orderedPoints.append(centroid of t) 
 	e=-e
 	set t = dictionary value of e
 ```
