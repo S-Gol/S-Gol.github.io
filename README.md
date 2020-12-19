@@ -8,4 +8,4 @@ This website hosts a collection of my projects and articles on said projects. Th
 
 ### About Me
 
-I'm a 4th-year Mechanical Engineering student with an interest in programming. Most of my focus has been on procedural generation, mesh geometry, and GPU computation. 
+I'm a 4th-year Mechanical Engineering student with an interest in programming. Most of my focus has been on procedural generation, mesh geometry, and GPU computation applied to finite element method simulations.  
