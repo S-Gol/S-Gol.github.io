@@ -1,6 +1,8 @@
 ## Generation of a polygonal grid on a sphere
 
-<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Grid1.PNG">
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Grid1.PNG" width="500">
+</p>
 
 ### Introduction
 
@@ -32,7 +34,9 @@ I used the icosphere technique. It provides a more regular grid than the Voronoi
 
 I started with the implementation of icosphere generation presented on the [Unity Community Wiki.](http://wiki.unity3d.com/index.php/CreateIcoSphere) It generates a simple isocahedron, shown in this image provided by Wikipedia: 
 
-![Icosahedron](/Images/PolyGrid/Icosahedron.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Icosahedron.svg" width="500">
+</p>
 
 Following the initial creation of this shape, we have to subdivide it to achieve the appropriate number of triangles and vertices. 
 
@@ -103,11 +107,15 @@ The subdivision in the code above shares points between triangles. While this do
 2. Calculate midpoints, after checking if the adjacent triangle has already done this
 3. Discard the original triangle, create four new ones based on the midpoints. 
 
-![Subdivision Example](/Images/PolyGrid/Subdivision.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Subdivision.svg" width="500">
+</p>
 
 After subdiving, we wind up with an icosphere. Again, Wikipedia provides a great example of what it should look like. 
 
-![Subdivision Example](/Images/PolyGrid/IcosphereWikipedia.png)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/IcosphereWikipedia.svg" width="500">
+</p>
 
 At this point, you might be thinking "But those are all pentagons! Where are the hexagons I was promised?" For geometrical reasons, the isocahedron is created of 12 pentagons. When we subidivide it, these pentagons are retained. We can convert the other triangles into hexagons, but these 12 pentagons will always exist - any size grid can be created, and these 12 will always be there, haunting you. If you have a problem with this, you can take it up with Euler or move to a hyperbolic world. 
 
@@ -115,11 +123,15 @@ At this point, you might be thinking "But those are all pentagons! Where are the
 
 After we have the icosphere, we need to perform a [truncation operation](https://en.wikipedia.org/wiki/Truncation_(geometry)) to create the polygonal faces. In general, truncation takes the vertices of a mesh and "crushes" them inwards. This has the effect shown in the image below. 
 
-![Truncation Example](/Images/PolyGrid/CubicTruncation.png)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/CubicTruncation.png" width="500">
+</p>
 
 The ideal truncation for the hexagonal surface:
 
-![Truncation Hex Example](/Images/PolyGrid/HexTruncation.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/HexTruncation.svg" width="500">
+</p>
 
 The truncation is performed in 3 steps.
 
@@ -127,7 +139,9 @@ The truncation is performed in 3 steps.
 2. Store all edges and triangle IDs to a dictionary (1 Parallel instance per triangle)
 3. Create new edges (not triangles yet) for each truncated face (1 Parallel instance per vertex)
 
-![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/TruncSteps.svg" width="500">
+</p>
 
 #### Truncation step 1
 
@@ -164,7 +178,9 @@ public static long dirSpecHashCode(int a, int b)
 
 By negating the hash, we can get the hash of the opposing triangle. Because we know that triangles are always wound clockwise in Unity, we know that this will always work. 
 
-![Triangles](/Images/PolyGrid/Triangles.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Triangles.svg" width="500">
+</p>
 
 Because of the winding, we can designate the triangle ABC as a collection of 3 edges, AB,BC,CA. Similarly, BDC is made up of BD,DC,CB. In the dictionary we created in step 2, we assigned the keys to be the edges and the values to be their parent triangles. In this case, the keys of hash(AB), hash(BC), hash(CA) will all return the value of the left triangle. 
 
@@ -174,7 +190,9 @@ Based on negative property of the hash, we can also reverse these hashes. For ex
 
 In step 3, these hashes are used to order the edges. Let's refer back to this image.
 
-![Truncation Steps ](/Images/PolyGrid/TruncSteps.svg)
+<p align="center">
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/TruncSteps.svg" width="500">
+</p>
 
 In step 2, we have a polygon made up of points 0,1,2,3,4,5,6, with 6 being the center of the new hexagon. Step three follows the pseudocode below
 
