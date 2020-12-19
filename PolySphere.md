@@ -1,6 +1,6 @@
 ## Generation of a polygonal grid on a sphere
 
-![Hexagonal Grid](/Images/PolyGrid/Grid1.PNG)
+<img src = "https://github.com/S-Gol/s-gol.github.io/blob/main/Images/PolyGrid/Grid1.PNG">
 
 ### Introduction
 
