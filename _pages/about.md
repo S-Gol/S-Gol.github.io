@@ -1,10 +1,7 @@
 ---
 title: "About"
 permalink: /about/
-header:
-  image: "/images/zakim.jpg"
 ---
 
-I'm a senior data scientist who excels at data wrangling, machine learning, exploratory analysis, and data visualizations.
+I'm a Mechanical Engineer currently working in aerospace R&D and studying for my master's degree. 
 
-Etc, etc, etc
