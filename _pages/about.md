@@ -5,7 +5,7 @@ permalink: /about/
 
 I'm a Mechanical Engineer currently working in aerospace R&D and studying for my master's degree. 
 
-**Work Experience**
+# Work Experience
 
 My current work focuses on research and developement of aerospace devices utilizing advanced composites. Some things I've worked on include:
 * Design and testing of quasi-static, dynamic, and gun-launch test systems
@@ -15,13 +15,13 @@ My current work focuses on research and developement of aerospace devices utiliz
 
 I've also worked previously as a lab technician and assembly technician, gaining experience in machining, electrical systems, and sensor data acquisition. 
 
-**Academic Experience**
+# Academic Experience
 
 My research experience is focused on solid mechanics, elastic waves, and the use of ultrasonics in nondestructive evaluation. Specifically, my Master's Thesis focuses on the impact of additively manufactured (3D printed) materials on ultrasound propagation during nondestructive testing. 
 
 During my undergraduate studies, I was able to work as a teaching assistant for classes focusing on CAD, programming, and project management. 
 
-**Interests**
+# Interests
 
 I'm interested in many branches of science and engineering, particularly those applied to space exploration. 
 
