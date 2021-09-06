@@ -1,6 +1,6 @@
 ---
 title: "Python - Elastic Wave Simulations"
-date: "2021-9-3"c
+date: 2021-9-3
 tags: [Python, Finite Difference, FDM, Simulations]
 excerpt: "A Python implementation of 2-Dimensional Elastic Wave Simulations"
 mathjax: "true"
