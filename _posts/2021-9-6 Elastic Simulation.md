@@ -14,5 +14,6 @@ While the Finite Difference Time Domain method has a number of weaknesses when c
 
 The code was accelerated using Numba's JIT compiler, which converts regular Python or NumPY instructions into high-performance compiled code - this code can also be run in parallel. This parallel optimization decreased runtime from 25ms per iteration to only 5 ms per iteration on a benchmark simulation. 
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/FDTD/Img1.gif" alt="Animation of elastic wave results">
 
 This animation shows the propagation of waves within the material. The waves are generated as a sinusoid transmitted for two periods in the top-left of the animation. After some time, the waves intersect a different material in the middle of the image - this causes diffraction and reflection visible in the waves. Also visible are the different types of elastic waves - longitudinal waves quickly gain distance, while the shear waves - with a slower propagation speed - lag behind. 
