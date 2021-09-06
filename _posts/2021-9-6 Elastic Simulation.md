@@ -1,6 +1,6 @@
 ---
-title: "Python Finite Difference Method - Heat Transfer Simulation"
-date: "2021-9-3"
+title: "Python - Elastic Wave Simulations"
+date: "2021-9-3"c
 tags: [Python, Finite Difference, FDM, Simulations]
 excerpt: "A Python implementation of 2-Dimensional Elastic Wave Simulations"
 mathjax: "true"
