@@ -85,7 +85,7 @@ analytics:
 # Site Author
 author:
   name             : "Seth Golembeski"
-  avatar           : "/images/bio-pic-2.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+#  avatar           : "/images/bio-pic-2.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Engineering Portfolio"
   location         : "Connecticut, United States"
   email            : "smgole1@outlook.com"
