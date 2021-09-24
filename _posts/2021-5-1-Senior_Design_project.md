@@ -24,7 +24,7 @@ Shown below is an image of the SolidWorks assembly and various component locatio
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/Sikorsky/SystemLabels.png" alt="SW assembly and location diagram.">
 
-All parts were designed using SolidWorks. FEA was performed on all parts under dynamic centrifugal loading conditions using the SolidWorks simulation package. Considering the high speed rotation of the rig, it was absolutely necessary to ensure the safety of all parts. In addition to ensuring acceptable stresses in all parts, vibrational loading needed to be considered. Because of this, the team designed all parts to have dual retaining features - pins were safety wired, bolts had locking fasteners, thread-lock adhesive was used on screws, and bearings were designed to fail in a safe manner. Safety features of the entire rig were designed to Sikorsky's aircraft design standards. 
+All parts were designed using SolidWorks. FEA was performed on all parts under dynamic centrifugal loading conditions using the SolidWorks simulation package. Considering the high speed rotation of the rig, it was absolutely necessary to ensure the safety of all parts. In addition to maintaining acceptable stresses in all parts, vibrational loading needed to be considered. Because of this, the team designed all parts to have dual retaining features - pins were safety wired, bolts had locking fasteners, thread-lock adhesive was used on screws, and bearings were designed to fail in a safe manner. Safety features of the entire rig were designed to Sikorsky's aircraft design standards. 
 
 In addition to getting parts custom-made by 3rd-party shops, the team made many of the parts by hand. I was able to work on the blades, airfoils, and cam system extensively in the University machine shop, gaining experience with everything from milling machines to 3d printing to composite hand-layups. 
 
@@ -32,4 +32,5 @@ After almost a year of working on the project, the team was able to succesfully 
 
 Below is a video of a test at 550RPM - Note the signficant aliasing due to the camera's framerate. 
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/Sikorsky/SystemLabels.png" alt="SW assembly and location diagram.">
 
