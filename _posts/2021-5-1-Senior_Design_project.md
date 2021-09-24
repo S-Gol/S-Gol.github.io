@@ -32,5 +32,5 @@ After almost a year of working on the project, the team was able to succesfully 
 
 Below is a video of a test at 550RPM - Note the signficant aliasing due to the camera's framerate. 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/Sikorsky/SystemLabels.png" alt="SW assembly and location diagram.">
+<img src="{{ site.url }}{{ site.baseurl }}/images/Sikorsky/550RPM.gif" alt="Video of a medium-speed test.">
 
