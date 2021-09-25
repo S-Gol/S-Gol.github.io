@@ -24,10 +24,10 @@ After refinishing all the parts, the next big step was figuring out how to mount
 
 After attaching my hand-made L-band circular waveguide antenna, I was ready to use the new dish. The first task was reception of NOAA's GOES satellites. These weather satellites are in geostationary orbit and broadcast images of the earth roughly ever half-hour in various wavelengths. Here's an example of one of the single-channel images - in this case, red visible light. 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/VHF/Red.jpg" alt="GOES visible light channel">
+<img src="{{ site.url }}{{ site.baseurl }}/images/Dish/Red.jpg" alt="GOES visible light channel">
 
 While GOES does not broadcast full-color images, they can be false-colored based on the varying wavelengths. I wrote a Python script to perform this colorization, using a Color Lookup Table (CLUT) to map the visible and IR wavelengths to color. This provided high-resolution color images of the entire earth. 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/VHF/US.png" alt="GOES false-color CONUS">
+<img src="{{ site.url }}{{ site.baseurl }}/images/Dish/US.png" alt="GOES false-color CONUS">
 
 Having successfully received GOES, my next goal is to automate the motion of the dish in order to measure galactic hydrogen radiation. This will require a new antenna, upgraded actuation hardware, and an automatic computer control system.  
