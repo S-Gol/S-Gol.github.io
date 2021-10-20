@@ -2,7 +2,7 @@
 title: "Geostationary Satellite Signal Reception"
 date: 2021-8-1
 tags: [SDR, radio, electrical]
-excerpt: "Using L-Band radio to listen to satellites in my backyard"
+excerpt: "Using L-Band radio to listen to satellites"
 mathjax: "true"
 ---
 
