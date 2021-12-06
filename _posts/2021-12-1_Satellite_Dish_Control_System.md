@@ -1,5 +1,5 @@
 ---
-title: "Geostationary Satellite Signal Reception"
+title: "Fully-Automated satellite reception"
 date: 2021-12-1
 tags: [SDR, radio, electrical]
 excerpt: "Fully-Automated satellite reception"
